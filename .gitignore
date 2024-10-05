@@ -1,0 +1,13 @@
+# IntelliJ IDEA files
+.idea/
+*.iml
+
+# Build directories
+/target/
+/out/
+
+# Logs
+*.log
+
+# Other IDEs
+*.class
