@@ -89,6 +89,9 @@ public class Main {
             // drain the results completely
             Stream<Result> futureList2 = resultSet2.stream();
             futureList2.map(Result::toString).forEach(LOGGER::info);
+
+            // define the schema before loading data
+            createScheme();
         }
 
         return g = traversal().withRemote(DriverRemoteConnection.using(cluster, this.graphName + "_traversal"));
@@ -356,9 +359,6 @@ public class Main {
             // create dynamic graph and define the schema before loading data
             createGraph();
 
-            // define the schema before loading data
-            createScheme();
-
             // build the graph structure
             createElements();
             // read to see they were made
@@ -390,7 +390,7 @@ public class Main {
 
     public static void main(String[] args) {
         final String graphName = (args != null && args.length > 0) ? args[0] : "graph1";
-        final String fileName = (args != null && args.length > 1) ? args[1] : "null";
+        final String fileName = (args != null && args.length > 1) ? args[1] : "conf/jgex-remote.properties";
         final Main app = new Main(graphName, fileName);
         app.runApp();
     }
