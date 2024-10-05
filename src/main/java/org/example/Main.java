@@ -39,7 +39,6 @@ public class Main {
     private static final String OUT_V = "outV";
     private static final String IN_V = "inV";
 
-    protected JanusGraph janusgraph;
     protected Cluster cluster;
     protected Client client;
     protected Configuration conf;
@@ -88,7 +87,7 @@ public class Main {
 
             final ResultSet resultSet2 = client.submit(s.toString());
             // drain the results completely
-            Stream<Result> futureList2 = resultSet.stream();
+            Stream<Result> futureList2 = resultSet2.stream();
             futureList2.map(Result::toString).forEach(LOGGER::info);
         }
 
@@ -136,7 +135,7 @@ public class Main {
         futureList.map(Result::toString).forEach(LOGGER::info);
     }
 
-    public void ConnectJanusServer() throws ConfigurationException, IOException {
+    public void ConnectJanusServer() throws ConfigurationException {
         LOGGER.info("opening graph");
         conf = ConfigurationUtil.loadPropertiesConfig(propFileName);
 
